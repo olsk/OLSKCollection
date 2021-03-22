@@ -83,11 +83,13 @@ const mod = {
 		<div class="OLSKCollectionGroupHeading">{ key }</div>
 	{/if}
 
-	{#each (key ? mod._ValueItemsGrouped[key] : mod._ValueItemsAll) as item }
-		<div class="OLSKCollectionItem" aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => OLSKCollectionDispatchClick(item) }>
-			<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
-		</div>
-	{/each}
+	<div class="OLSKCollectionGroupItems">
+		{#each (key ? mod._ValueItemsGrouped[key] : mod._ValueItemsAll) as item }
+			<div class="OLSKCollectionItem" aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => OLSKCollectionDispatchClick(item) }>
+				<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
+			</div>
+		{/each}
+	</div>
 </div>
 
 {/each}
