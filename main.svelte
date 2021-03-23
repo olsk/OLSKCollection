@@ -80,7 +80,7 @@ const mod = {
 
 <div class="OLSKCollectionGroup">
 	{#if key }
-		<div class="OLSKCollectionGroupHeading">{ key }</div>
+		<div class="OLSKCollectionGroupHeading OLSKStickyHeader">{ key }</div>
 	{/if}
 
 	<div class="OLSKCollectionGroupItems">
@@ -95,3 +95,9 @@ const mod = {
 {/each}
 
 </div>
+
+<style>
+.OLSKCollectionGroupItems {
+	z-index: -1;
+}
+</style>

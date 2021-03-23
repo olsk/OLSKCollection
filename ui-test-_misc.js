@@ -5,6 +5,18 @@ describe('OLSKCollection_Misc', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
+	
+	describe('OLSKCollectionGroupHeading', function test_OLSKCollectionGroupHeading () {
+
+		before(function () {
+			return browser.pressButton('#TestGroupButton');
+		});
+		
+		it('classes OLSKStickyHeader', function () {
+			browser.assert.hasClass(OLSKCollectionGroupHeading, 'OLSKStickyHeader');
+		});
+
+	});
 
 	context('OLSKCollectionItem', function test_OLSKCollectionItem() {
 
