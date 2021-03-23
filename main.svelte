@@ -97,7 +97,7 @@ const mod = {
 </div>
 
 <style>
-.OLSKCollectionGroupItems {
-	z-index: -1;
+.OLSKCollectionGroupHeading {
+	z-index: 1;
 }
 </style>
