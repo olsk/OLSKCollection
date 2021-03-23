@@ -95,9 +95,3 @@ const mod = {
 {/each}
 
 </div>
-
-<style>
-.OLSKCollectionGroupHeading {
-	z-index: 1;
-}
-</style>
