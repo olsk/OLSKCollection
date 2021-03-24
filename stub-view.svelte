@@ -141,16 +141,16 @@ import OLSKCollection from './main.svelte';
 </OLSKCollection>
 
 <p>
-	<button id="TestItemInsertButton" on:click={ mod.InterfaceInsertButtonDidClick }></button>
-	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }></button>
-	<button id="TestGroupButton" on:click={ mod.InterfaceGroupButtonDidClick }></button>
+	<button id="TestItemInsertButton" on:click={ mod.InterfaceInsertButtonDidClick }>TestItemInsertButton</button>
+	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }>TestSortButton</button>
+	<button id="TestGroupButton" on:click={ mod.InterfaceGroupButtonDidClick }>TestGroupButton</button>
 </p>
 
 {#if mod._ValueItemSelected }
 	<p>
 		<textarea id="TestItemField" on:input={ mod.InterfaceFieldDidInput }></textarea>
-		<button id="TestItemArchiveButton" on:click={ mod.InterfaceArchiveButtonDidClick }></button>
-		<button id="TestItemRemoveButton" on:click={ mod.InterfaceRemoveButtonDidClick }></button>
+		<button id="TestItemArchiveButton" on:click={ mod.InterfaceArchiveButtonDidClick }>TestItemArchiveButton</button>
+		<button id="TestItemRemoveButton" on:click={ mod.InterfaceRemoveButtonDidClick }>TestItemRemoveButton</button>
 	</p>
 {/if}
 
