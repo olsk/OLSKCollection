@@ -118,7 +118,13 @@ const inputData = Object.assign({
 		window.TestOLSKCollectionDispatchClickData.innerHTML = inputData.OLSKCollectionItemAccessibilitySummaryFunction(item);
 	},
 
-}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries())));
+}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
+	if (e[0] === 'OLSKCollectionItems') {
+		e[1] = JSON.parse(e[1]);
+	}
+
+	return e;
+})));
 
 import OLSKCollection from './main.svelte';
 </script>

@@ -11,6 +11,8 @@ export let _OLSKCollectionDispatchKey;
 
 export let OLSKCollectionDispatchClick;
 
+export let OLSKCollectionItems = [];
+
 import { OLSK_SPEC_UI } from  'OLSKSpec';
 
 export const modPublic = {
@@ -55,7 +57,7 @@ const mod = {
 
 	_ValueArchiveIsVisible: false,
 
-	_ValueItemsAll: [],
+	_ValueItemsAll: OLSKCollectionItems,
 	ValueItemsAll (inputData) {
 		mod._ValueItemsAll = inputData.filter(function (e) {
 			return !(!mod._ValueArchiveIsVisible && _OLSKCollectionArchiveField && e[_OLSKCollectionArchiveField]);

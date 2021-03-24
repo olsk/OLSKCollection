@@ -71,4 +71,25 @@ describe('OLSKCollection_Access', function () {
 		});
 
 	});
+
+	context('OLSKCollectionItems', function test_OLSKCollectionItems() {
+
+		const item = Date.now() % 10;
+
+		before(function () {
+			return browser.OLSKVisit(kDefaultRoute, {
+				OLSKCollectionItems: JSON.stringify(Array.from(Array(item)).map(function () {
+					return {
+						XYZItemBlurb: '',
+					};
+				})),
+			});
+		});
+
+		it('shows OLSKCollectionItem', function () {
+			browser.assert.elements(OLSKCollectionItem, item);
+		});
+
+	});
+
 });
