@@ -13,60 +13,28 @@ export let OLSKCollectionItems = [];
 
 import { OLSK_SPEC_UI } from  'OLSKSpec';
 
-export const modPublic = {
+import OLSKCollectionLogic from  './logic.js';
 
-	// DATA
+export const modPublic = OLSKCollectionLogic.OLSKCollectionAPI({
+	OLSKCollectionItems,
 
-	_OLSKCollectionDataItemsAll () {
-		return mod._ValueItemsAll.slice();
-	},
+	_OLSKCollectionKeyFunction: _OLSKCollectionDispatchKey,
+	OLSKCollectionSortFunction,
 
-	// CONTROL
-	
-	OLSKCollectionInsert (inputData) {
-		mod.ValueItemsAll([inputData].concat(mod._ValueItemsAll));
-
-		return inputData;
-	},
-
-	OLSKCollectionUpdate (inputData) {
-		mod.ValueItemsAll(mod._ValueItemsAll.map(function (e) {
-			return _OLSKCollectionDispatchKey(e) === _OLSKCollectionDispatchKey(inputData) ? inputData : e;
-		}));
-
-		return inputData;
-	},
-	
-	OLSKCollectionRemove (inputData) {
-		mod.ValueItemsAll(mod._ValueItemsAll.filter(function (e) {
-			return _OLSKCollectionDispatchKey(e) !== _OLSKCollectionDispatchKey(inputData);
-		}));
-	},
-
-	OLSKCollectionSort () {
-		mod.ValueItemsAll(mod._ValueItemsAll.sort(OLSKCollectionSortFunction));
-	},
-
-};
-
-const mod = {
-
-	// VALUE
-
-	_ValueItemsAll: OLSKCollectionItems,
-	ValueItemsAll (inputData) {
-		[].splice.apply(OLSKCollectionItems, [0, OLSKCollectionItems.length].concat(mod._ValueItemsAll = inputData.filter(function (e) {
-			return !(!mod._ValueArchiveIsVisible && _OLSKCollectionArchiveField && e[_OLSKCollectionArchiveField]);
-		})));
-
+	OLSKCollectionDispatchChange: (function () {
+		mod._ValueItems = mod._ValueItems; // #purge-svelte-force-update
+		
 		if (!OLSKCollectionGroupFunction) {
 			return;
 		}
 
-		mod._ValueItemsGrouped = OLSKCollectionGroupFunction(mod._ValueItemsAll)
+		mod._ValueItemsGrouped = OLSKCollectionGroupFunction(mod._ValueItems);
 		mod._ValueItemsGroups = Object.keys(mod._ValueItemsGrouped);
-	},
+	}),
+});
 
+const mod = {
+	_ValueItems: OLSKCollectionItems,
 };
 </script>
 
@@ -82,7 +50,7 @@ const mod = {
 	{/if}
 
 	<div class="OLSKCollectionGroupItems">
-		{#each (key ? mod._ValueItemsGrouped[key] : mod._ValueItemsAll) as item }
+		{#each (key ? mod._ValueItemsGrouped[key] : mod._ValueItems) as item }
 			<div class="OLSKCollectionItem" aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => OLSKCollectionDispatchClick(item) }>
 				<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
 			</div>
