@@ -1,8 +1,6 @@
 <script>
 export let OLSKCollectionItemAccessibilitySummaryFunction;
 
-export let _OLSKCollectionArchiveField = null;
-
 export let OLSKCollectionSortFunction;
 
 export let OLSKCollectionGroupFunction = null;
@@ -54,8 +52,6 @@ export const modPublic = {
 const mod = {
 
 	// VALUE
-
-	_ValueArchiveIsVisible: false,
 
 	_ValueItemsAll: OLSKCollectionItems,
 	ValueItemsAll (inputData) {

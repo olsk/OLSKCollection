@@ -109,8 +109,6 @@ const inputData = Object.assign({
 		return inputData.XYZItemID;
 	},
 
-	_OLSKCollectionArchiveField: 'XYZItemIsArchived',
-
 	OLSKCollectionDispatchClick (item) {
 		mod.ControlItemActivate(item);
 
