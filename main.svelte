@@ -59,9 +59,9 @@ const mod = {
 
 	_ValueItemsAll: OLSKCollectionItems,
 	ValueItemsAll (inputData) {
-		mod._ValueItemsAll = inputData.filter(function (e) {
+		[].splice.apply(OLSKCollectionItems, [0, OLSKCollectionItems.length].concat(mod._ValueItemsAll = inputData.filter(function (e) {
 			return !(!mod._ValueArchiveIsVisible && _OLSKCollectionArchiveField && e[_OLSKCollectionArchiveField]);
-		});
+		})));
 
 		if (!OLSKCollectionGroupFunction) {
 			return;
