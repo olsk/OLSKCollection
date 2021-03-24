@@ -159,10 +159,4 @@ import OLSKCollection from './main.svelte';
 	border-left: 3px grey solid;
 	padding-left: 3px;
 }
-
-em {
-	display: inline-table;
-	max-width: 16px;
-	overflow: hidden;
-}
 </style>
