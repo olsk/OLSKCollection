@@ -21,7 +21,7 @@ describe('OLSKCollection_Sort', function () {
 		});
 
 		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'charlie bravo alfa'.replace(/ /g, ''));
+			browser.assert.text(OLSKCollectionItem, 'charlie bravo alfa');
 		});
 
 	});
@@ -37,7 +37,7 @@ describe('OLSKCollection_Sort', function () {
 		});
 
 		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'charlie alfa2 alfa'.replace(/ /g, ''));
+			browser.assert.text(OLSKCollectionItem, 'charlie alfa2 alfa');
 		});
 
 	});
@@ -53,7 +53,7 @@ describe('OLSKCollection_Sort', function () {
 		});
 
 		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'charlie alfa2'.replace(/ /g, ''));
+			browser.assert.text(OLSKCollectionItem, 'charlie alfa2');
 		});
 
 	});
@@ -65,7 +65,7 @@ describe('OLSKCollection_Sort', function () {
 		});
 
 		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'alfa2 charlie'.replace(/ /g, ''));
+			browser.assert.text(OLSKCollectionItem, 'alfa2 charlie');
 		});
 
 	});

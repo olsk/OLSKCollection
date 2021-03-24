@@ -9,6 +9,10 @@ describe('OLSKCollection_Misc', function () {
 	describe('OLSKCollectionGroupHeading', function test_OLSKCollectionGroupHeading () {
 
 		before(function () {
+			return browser.pressButton('#TestItemInsertButton');
+		});
+
+		before(function () {
 			return browser.pressButton('#TestGroupButton');
 		});
 		
@@ -22,10 +26,6 @@ describe('OLSKCollection_Misc', function () {
 
 		const item = Math.random().toString();
 		const body = item + '\n' + Math.random().toString();
-
-		before(function () {
-			return browser.pressButton('#TestItemInsertButton');
-		});
 
 		it('sets role', function () {
 			browser.assert.attribute(OLSKCollectionItem, 'role', 'button');
