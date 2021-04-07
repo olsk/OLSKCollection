@@ -10,6 +10,7 @@ export let _OLSKCollectionDispatchKey;
 export let OLSKCollectionDispatchClick;
 
 export let OLSKCollectionItems = [];
+export let OLSKCollectionItemsLocus = null;
 
 import { OLSK_SPEC_UI } from  'OLSKSpec';
 
@@ -85,7 +86,7 @@ const mod = {
 
 	<div class="OLSKCollectionChunkItems">
 		{#each (key ? mod._ValueItemsChunked[key] : OLSKCollectionItems) as item }
-			<div class="OLSKCollectionItem" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
+			<div class="OLSKCollectionItem" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
 				{#if modPublic._OLSKCollectionStashEnabled }
 					<div class="OLSKCollectionItemStashStatus"></div>
 				{/if}

@@ -60,7 +60,7 @@ const mod = {
 				}, {})).reverse());
 			}),
 
-		})
+		});
 		mod._OLSKCollection.modPublic.OLSKCollectionSort();
 	},
 
@@ -72,6 +72,10 @@ const mod = {
 		mod._ValueItems = Array.from(Array(mod._ValueTestAssignmentCount)).map(function () {
 			return mod.DataItemValid();
 		});
+	},
+
+	InterfaceLocusButtonDidClick () {
+		mod._ValueItemSelected = mod._ValueItems[mod._ValueTestLocusIndex];
 	},
 
 	// CONTROL
@@ -141,7 +145,13 @@ const inputData = Object.assign({
 		mod._ValueTestAssignmentCount = parseInt(e[1]);
 
 		return null;
-	};
+	}
+
+	if (e[0] === 'TestLocusIndex') {
+		mod._ValueTestLocusIndex = parseInt(e[1]) - 1;
+
+		return null;
+	}
 
 	return e;
 }).filter(function (e) {
@@ -157,12 +167,14 @@ import OLSKCollection from './main.svelte';
 	<button id="TestChunkButton" on:click={ mod.InterfaceChunkButtonDidClick }>TestChunkButton</button>
 	<button id="TestStashButton" on:click={ mod.InterfaceStashButtonDidClick }>TestStashButton</button>
 	<button id="TestAssignmentButton" on:click={ mod.InterfaceAssignmentButtonDidClick }>TestAssignmentButton</button>
+	<button id="TestLocusButton" on:click={ mod.InterfaceLocusButtonDidClick }>TestLocusButton</button>
 </p>
 
 <OLSKCollection
 	bind:this={ mod._OLSKCollection }
 
 	OLSKCollectionItems={ mod._ValueItems }
+	OLSKCollectionItemsLocus={ mod._ValueItemSelected }
 	
 	{ ...inputData }
 
@@ -190,6 +202,10 @@ import OLSKCollection from './main.svelte';
 .TestOLSKCollectionItemArchived {
 	border-left: 3px grey solid;
 	padding-left: 3px;
+}
+
+:global(.OLSKCollectionItemLocus) {
+	background: blue;
 }
 
 :global(.OLSKCollectionItemStash .OLSKCollectionItemStashStatus) {
