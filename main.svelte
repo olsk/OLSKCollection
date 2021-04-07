@@ -22,13 +22,12 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 	OLSKCollectionSortFunction,
 
 	OLSKCollectionDispatchChange: (function () {
-		mod._ValueItems = mod._ValueItems; // #purge-svelte-force-update
-		
+		OLSKCollectionItems = OLSKCollectionItems;
 		if (!OLSKCollectionChunkFunction) {
 			return;
 		}
 
-		mod._ValueItemsChunked = OLSKCollectionChunkFunction(mod._ValueItems);
+		mod._ValueItemsChunked = OLSKCollectionChunkFunction(OLSKCollectionItems);
 		mod._ValueItemsChunks = Object.keys(mod._ValueItemsChunked);
 	}),
 }), {
@@ -50,8 +49,6 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 const mod = {
 
 	// VALUE
-
-	_ValueItems: OLSKCollectionItems,
 
 	_ValueStashItems: [],
 
@@ -78,7 +75,7 @@ const mod = {
 	{/if}
 
 	<div class="OLSKCollectionChunkItems">
-		{#each (key ? mod._ValueItemsChunked[key] : mod._ValueItems) as item }
+		{#each (key ? mod._ValueItemsChunked[key] : OLSKCollectionItems) as item }
 			<div class="OLSKCollectionItem" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
 				{#if modPublic._OLSKCollectionStashEnabled }
 					<div class="OLSKCollectionItemStashStatus"></div>
