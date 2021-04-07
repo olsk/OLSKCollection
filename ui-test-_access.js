@@ -5,7 +5,9 @@ Object.entries({
 	
 	OLSKCollectionChunk: '.OLSKCollectionChunk',
 	OLSKCollectionChunkHeading: '.OLSKCollectionChunkHeading',
+
 	OLSKCollectionItem: '.OLSKCollectionItem',
+	OLSKCollectionItemStashStatus: '.OLSKCollectionItemStashStatus',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -74,11 +76,11 @@ describe('OLSKCollection_Access', function () {
 
 	context('OLSKCollectionItems', function test_OLSKCollectionItems() {
 
-		const item = Date.now() % 10;
+		const count = Math.max(1, Date.now() % 10);
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
-				OLSKCollectionItems: JSON.stringify(Array.from(Array(item)).map(function () {
+				OLSKCollectionItems: JSON.stringify(Array.from(Array(count)).map(function () {
 					return {
 						XYZItemBlurb: '',
 					};
@@ -87,7 +89,35 @@ describe('OLSKCollection_Access', function () {
 		});
 
 		it('shows OLSKCollectionItem', function () {
-			browser.assert.elements(OLSKCollectionItem, item);
+			browser.assert.elements(OLSKCollectionItem, count);
+		});
+
+		it('hides OLSKCollectionItemStashStatus', function () {
+			browser.assert.elements(OLSKCollectionItemStashStatus, 0);
+		});
+
+		context('OLSKCollectionStashEnabled', function () {
+			
+			before(function () {
+				return browser.pressButton('#TestStashButton');
+			});
+
+			it('shows OLSKCollectionItemStashStatus', function () {
+				browser.assert.elements(OLSKCollectionItemStashStatus, count);
+			});
+
+			context('disable', function () {
+				
+				before(function () {
+					return browser.pressButton('#TestStashButton');
+				});
+
+				it('shows OLSKCollectionItemStashStatus', function () {
+					browser.assert.elements(OLSKCollectionItemStashStatus, 0);
+				});
+			
+			});
+		
 		});
 
 	});

@@ -60,6 +60,10 @@ const mod = {
 		mod._OLSKCollection.modPublic.OLSKCollectionSort();
 	},
 
+	InterfaceStashButtonDidClick () {
+		mod._OLSKCollection.modPublic.OLSKCollectionStashEnabled(!mod._OLSKCollection.modPublic.OLSKCollectionStashEnabled());
+	},
+
 	// CONTROL
 
 	ControlItemInsert () {
@@ -127,6 +131,13 @@ const inputData = Object.assign({
 import OLSKCollection from './main.svelte';
 </script>
 
+<p>
+	<button id="TestItemInsertButton" on:click={ mod.InterfaceInsertButtonDidClick }>TestItemInsertButton</button>
+	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }>TestSortButton</button>
+	<button id="TestChunkButton" on:click={ mod.InterfaceChunkButtonDidClick }>TestChunkButton</button>
+	<button id="TestStashButton" on:click={ mod.InterfaceStashButtonDidClick }>TestStashButton</button>
+</p>
+
 <OLSKCollection
 	bind:this={ mod._OLSKCollection }
 	
@@ -139,12 +150,6 @@ import OLSKCollection from './main.svelte';
 
 	<div slot="OLSKCollectionItem" class="TestOLSKCollectionItem" class:TestOLSKCollectionItemArchived={ OLSKCollectionItem.XYZItemIsArchived } >{ OLSKCollectionItem.XYZItemBlurb }</div>	
 </OLSKCollection>
-
-<p>
-	<button id="TestItemInsertButton" on:click={ mod.InterfaceInsertButtonDidClick }>TestItemInsertButton</button>
-	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }>TestSortButton</button>
-	<button id="TestChunkButton" on:click={ mod.InterfaceChunkButtonDidClick }>TestChunkButton</button>
-</p>
 
 {#if mod._ValueItemSelected }
 	<p>
@@ -162,5 +167,17 @@ import OLSKCollection from './main.svelte';
 .TestOLSKCollectionItemArchived {
 	border-left: 3px grey solid;
 	padding-left: 3px;
+}
+
+:global(.OLSKCollectionItemStash .OLSKCollectionItemStashStatus) {
+	background: blue;
+}
+
+:global(.OLSKCollectionItemStashStatus) {
+	display: block;
+	width: 24px;
+	height: 24px;
+	border: 1px solid black;
+	border-radius: 8px;
 }
 </style>

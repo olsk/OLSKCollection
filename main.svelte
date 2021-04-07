@@ -15,7 +15,7 @@ import { OLSK_SPEC_UI } from  'OLSKSpec';
 
 import OLSKCollectionLogic from  './logic.js';
 
-export const modPublic = OLSKCollectionLogic.OLSKCollectionAPI({
+export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 	OLSKCollectionItems,
 
 	_OLSKCollectionKeyFunction: _OLSKCollectionDispatchKey,
@@ -31,10 +31,38 @@ export const modPublic = OLSKCollectionLogic.OLSKCollectionAPI({
 		mod._ValueItemsChunked = OLSKCollectionChunkFunction(mod._ValueItems);
 		mod._ValueItemsChunks = Object.keys(mod._ValueItemsChunked);
 	}),
+}), {
+
+	_OLSKCollectionStashEnabled: false,
+
+	OLSKCollectionStashEnabled (inputData) {
+		if (typeof inputData === 'undefined') {
+			return modPublic._OLSKCollectionStashEnabled;
+		}
+
+		mod._ValueStashItems = [];
+
+		return modPublic._OLSKCollectionStashEnabled = inputData;
+	},
+
 });
 
 const mod = {
+
+	// VALUE
+
 	_ValueItems: OLSKCollectionItems,
+
+	_ValueStashItems: [],
+
+	// INTERFACE
+
+	InterfaceStashToggle (inputData) {
+		mod._ValueStashItems = mod._ValueStashItems.includes(inputData) ? mod._ValueStashItems.filter(function (e) {
+			return e !== inputData;
+		}) : mod._ValueStashItems.concat(inputData);
+	},
+
 };
 </script>
 
@@ -51,7 +79,10 @@ const mod = {
 
 	<div class="OLSKCollectionChunkItems">
 		{#each (key ? mod._ValueItemsChunked[key] : mod._ValueItems) as item }
-			<div class="OLSKCollectionItem" aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => OLSKCollectionDispatchClick(item) }>
+			<div class="OLSKCollectionItem" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
+				{#if modPublic._OLSKCollectionStashEnabled }
+					<div class="OLSKCollectionItemStashStatus"></div>
+				{/if}
 				<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
 			</div>
 		{/each}
