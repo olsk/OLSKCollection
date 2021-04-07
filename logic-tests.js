@@ -266,3 +266,31 @@ describe('OLSKCollectionAPI', function test_OLSKCollectionAPI() {
 	});
 
 });
+
+describe('OLSKCollectionConstrainIndex', function test_OLSKCollectionConstrainIndex() {
+
+	it('throws error if param1 not array', function() {
+		throws(function() {
+			mod.OLSKCollectionConstrainIndex(null, 0);
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	it('throws error if param2 not number', function() {
+		throws(function() {
+			mod.OLSKCollectionConstrainIndex([], null);
+		}, /OLSKErrorInputNotValid/);
+	});
+
+	it('returns last if param2 below 0', function() {
+		deepEqual(mod.OLSKCollectionConstrainIndex(['alfa', 'bravo', 'charlie'], -1), 2);
+	});
+
+	it('returns first if param2 above length', function() {
+		deepEqual(mod.OLSKCollectionConstrainIndex(['alfa', 'bravo', 'charlie'], 3), 0);
+	});
+
+	it('returns param2', function() {
+		deepEqual(mod.OLSKCollectionConstrainIndex([], 0), 0);
+	});
+
+});

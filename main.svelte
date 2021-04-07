@@ -8,9 +8,13 @@ export let OLSKCollectionChunkFunction = null;
 export let _OLSKCollectionDispatchKey;
 
 export let OLSKCollectionDispatchClick;
+export let OLSKCollectionDispatchArrow = null;
 
 export let OLSKCollectionItems = [];
 export let OLSKCollectionItemsLocus = null;
+
+export let OLSKCollectionEnableLooping = false;
+export let OLSKCollectionIgnoreKeyboard = false;
 
 import { OLSK_SPEC_UI } from  'OLSKSpec';
 
@@ -64,14 +68,62 @@ const mod = {
 
 	// INTERFACE
 
+	InterfaceWindowDidKeydown(event) {
+		if (!OLSKCollectionDispatchArrow) {
+			return;
+		}
+		
+		if (OLSKCollectionIgnoreKeyboard) {
+			return;
+		}
+		
+		if (!OLSKCollectionItems.length) {
+			return;
+		}
+
+		const handlerFunctions = {
+			ArrowUp () {
+				(function() {
+					if (!OLSKCollectionEnableLooping && OLSKCollectionItems[0] === OLSKCollectionItemsLocus) {
+						return;
+					}
+					
+					mod.ControlArrowIncrement(-1);
+				})();
+
+				return event.preventDefault();
+			},
+			ArrowDown () {
+				(function() {
+					if (!OLSKCollectionEnableLooping && (OLSKCollectionItems.slice(-1).pop() === OLSKCollectionItemsLocus)) {
+						return;
+					}
+
+					mod.ControlArrowIncrement(1);
+				})();
+				
+				return event.preventDefault();
+			},
+		};
+
+		handlerFunctions[event.code] && handlerFunctions[event.code]();
+	},
+
 	InterfaceStashToggle (inputData) {
 		mod._ValueStashItems = mod._ValueStashItems.includes(inputData) ? mod._ValueStashItems.filter(function (e) {
 			return e !== inputData;
 		}) : mod._ValueStashItems.concat(inputData);
 	},
 
+	// CONTROL
+
+	ControlArrowIncrement (inputData) {
+		OLSKCollectionDispatchArrow(OLSKCollectionItems[OLSKCollectionLogic.OLSKCollectionConstrainIndex(OLSKCollectionItems, OLSKCollectionItems.indexOf(OLSKCollectionItemsLocus) + inputData)]);
+	},
+
 };
 </script>
+<svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="OLSKCollection">
 

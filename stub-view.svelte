@@ -29,6 +29,10 @@ const mod = {
 		mod.ControlItemInsert();
 	},
 
+	InterfaceClearSelectionButtonDidClick () {
+		mod._ValueItemSelected = null;
+	},
+
 	InterfaceFieldDidInput () {
 		mod._OLSKCollection.modPublic.OLSKCollectionUpdate(Object.assign(mod._ValueItemSelected, {
 			XYZItemBlurb: this.value,
@@ -76,6 +80,10 @@ const mod = {
 
 	InterfaceLocusButtonDidClick () {
 		mod._ValueItemSelected = mod._ValueItems[mod._ValueTestLocusIndex];
+	},
+
+	InterfaceToggleLoopingButtonDidClick () {
+		mod._ValueLoopingEnabled = !mod._ValueLoopingEnabled;
 	},
 
 	// CONTROL
@@ -134,6 +142,13 @@ const inputData = Object.assign({
 		window.TestOLSKCollectionDispatchClickData.innerHTML = inputData.OLSKCollectionItemAccessibilitySummaryFunction(item);
 	},
 
+	OLSKCollectionDispatchArrow (item) {
+		mod.ControlItemActivate(item);
+
+		window.TestOLSKCollectionDispatchArrow.innerHTML = parseInt(window.TestOLSKCollectionDispatchArrow.innerHTML) + 1;
+		window.TestOLSKCollectionDispatchArrowData.innerHTML = inputData.OLSKCollectionItemAccessibilitySummaryFunction(item);
+	},
+
 }, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 	if (e[0] === 'OLSKCollectionItems') {
 		mod._ValueItems = JSON.parse(e[1]);
@@ -163,11 +178,13 @@ import OLSKCollection from './main.svelte';
 
 <p>
 	<button id="TestItemInsertButton" on:click={ mod.InterfaceInsertButtonDidClick }>TestItemInsertButton</button>
+	<button id="TestItemClearSelectionButton" on:click={ mod.InterfaceClearSelectionButtonDidClick }>TestItemClearSelectionButton</button>
 	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }>TestSortButton</button>
 	<button id="TestChunkButton" on:click={ mod.InterfaceChunkButtonDidClick }>TestChunkButton</button>
 	<button id="TestStashButton" on:click={ mod.InterfaceStashButtonDidClick }>TestStashButton</button>
 	<button id="TestAssignmentButton" on:click={ mod.InterfaceAssignmentButtonDidClick }>TestAssignmentButton</button>
 	<button id="TestLocusButton" on:click={ mod.InterfaceLocusButtonDidClick }>TestLocusButton</button>
+	<button id="TestToggleLoopingButton" on:click={ mod.InterfaceToggleLoopingButtonDidClick }>TestToggleLoopingButton</button>
 </p>
 
 <OLSKCollection
@@ -175,6 +192,7 @@ import OLSKCollection from './main.svelte';
 
 	OLSKCollectionItems={ mod._ValueItems }
 	OLSKCollectionItemsLocus={ mod._ValueItemSelected }
+	OLSKCollectionEnableLooping={ mod._ValueLoopingEnabled }
 	
 	{ ...inputData }
 
