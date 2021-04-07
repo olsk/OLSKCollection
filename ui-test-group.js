@@ -22,7 +22,7 @@ describe('OLSKCollection_Group', function () {
 
 	context('OLSKCollectionGroupHeading', function () {
 		
-		it('binds OLSKCollectionGroupFunction', function () {
+		it('binds OLSKCollectionChunkFunction', function () {
 			browser.assert.text(OLSKCollectionGroupHeading, item[0].toUpperCase());
 		});
 	

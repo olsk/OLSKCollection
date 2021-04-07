@@ -3,7 +3,7 @@ export let OLSKCollectionItemAccessibilitySummaryFunction;
 
 export let OLSKCollectionSortFunction;
 
-export let OLSKCollectionGroupFunction = null;
+export let OLSKCollectionChunkFunction = null;
 
 export let _OLSKCollectionDispatchKey;
 
@@ -24,11 +24,11 @@ export const modPublic = OLSKCollectionLogic.OLSKCollectionAPI({
 	OLSKCollectionDispatchChange: (function () {
 		mod._ValueItems = mod._ValueItems; // #purge-svelte-force-update
 		
-		if (!OLSKCollectionGroupFunction) {
+		if (!OLSKCollectionChunkFunction) {
 			return;
 		}
 
-		mod._ValueItemsGrouped = OLSKCollectionGroupFunction(mod._ValueItems);
+		mod._ValueItemsGrouped = OLSKCollectionChunkFunction(mod._ValueItems);
 		mod._ValueItemsGroups = Object.keys(mod._ValueItemsGrouped);
 	}),
 });

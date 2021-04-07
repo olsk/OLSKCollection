@@ -47,7 +47,7 @@ const mod = {
 	InterfaceGroupButtonDidClick () {
 		mod._OLSKCollection.$$set({
 
-			OLSKCollectionGroupFunction: (function (inputData) {
+			OLSKCollectionChunkFunction: (function (inputData) {
 				return Object.fromEntries(Object.entries(inputData.reduce(function (coll, item) {
 					const group = item.XYZItemBlurb[0].toUpperCase();
 					return Object.assign(coll, {

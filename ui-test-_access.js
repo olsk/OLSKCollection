@@ -44,7 +44,7 @@ describe('OLSKCollection_Access', function () {
 
 	});
 
-	context('OLSKCollectionGroupFunction', function test_OLSKCollectionGroupFunction() {
+	context('OLSKCollectionChunkFunction', function test_OLSKCollectionChunkFunction() {
 
 		before(function () {
 			return browser.pressButton('#TestGroupButton');
