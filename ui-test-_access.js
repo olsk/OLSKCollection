@@ -14,8 +14,12 @@ Object.entries({
 
 describe('OLSKCollection_Access', function () {
 
+	const TestAssignmentCount = Math.max(3, uRandomInt(10));
+
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			TestAssignmentCount,
+		});
 	});
 
 	it('shows OLSKCollection', function () {
@@ -70,6 +74,18 @@ describe('OLSKCollection_Access', function () {
 
 		it('hides OLSKCollectionChunk', function () {
 			browser.assert.elements(OLSKCollectionChunk, 0);
+		});
+
+	});
+
+	context.skip('assignment', function test_assignment() {
+
+		before(function () {
+			return browser.pressButton('#TestAssignmentButton');
+		});
+
+		it('shows OLSKCollectionItem', function () {
+			browser.assert.elements(OLSKCollectionItem, TestAssignmentCount);
 		});
 
 	});

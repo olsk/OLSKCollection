@@ -23,6 +23,7 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 
 	OLSKCollectionDispatchChange: (function () {
 		OLSKCollectionItems = OLSKCollectionItems;
+		
 		if (!OLSKCollectionChunkFunction) {
 			return;
 		}
@@ -45,6 +46,14 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 	},
 
 });
+
+const _OLSKCollectionItemsDidChange = function (inputData) {
+	modPublic._OLSKCollectionDebugReassign(inputData);
+};
+
+$: {
+	_OLSKCollectionItemsDidChange(OLSKCollectionItems)
+};
 
 const mod = {
 

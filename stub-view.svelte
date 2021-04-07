@@ -7,7 +7,11 @@ const mod = {
 
 	// VALUE
 
+	_ValueItems: [],
+
 	_ValueItemSelected: null,
+
+	_ValueTestAssignmentCount: Math.max(3, Math.round(Math.random() * 10)),
 
 	// DATA
 
@@ -62,6 +66,12 @@ const mod = {
 
 	InterfaceStashButtonDidClick () {
 		mod._OLSKCollection.modPublic.OLSKCollectionStashEnabled(!mod._OLSKCollection.modPublic.OLSKCollectionStashEnabled());
+	},
+
+	InterfaceAssignmentButtonDidClick () {
+		mod._ValueItems = Array.from(Array(mod._ValueTestAssignmentCount)).map(function () {
+			return mod.DataItemValid();
+		});
 	},
 
 	// CONTROL
@@ -122,10 +132,20 @@ const inputData = Object.assign({
 
 }, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 	if (e[0] === 'OLSKCollectionItems') {
-		e[1] = JSON.parse(e[1]);
+		mod._ValueItems = JSON.parse(e[1]);
+
+		return null;
 	}
 
+	if (e[0] === 'TestAssignmentCount') {
+		mod._ValueTestAssignmentCount = parseInt(e[1]);
+
+		return null;
+	};
+
 	return e;
+}).filter(function (e) {
+	return !!e;
 })));
 
 import OLSKCollection from './main.svelte';
@@ -136,10 +156,13 @@ import OLSKCollection from './main.svelte';
 	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }>TestSortButton</button>
 	<button id="TestChunkButton" on:click={ mod.InterfaceChunkButtonDidClick }>TestChunkButton</button>
 	<button id="TestStashButton" on:click={ mod.InterfaceStashButtonDidClick }>TestStashButton</button>
+	<button id="TestAssignmentButton" on:click={ mod.InterfaceAssignmentButtonDidClick }>TestAssignmentButton</button>
 </p>
 
 <OLSKCollection
 	bind:this={ mod._OLSKCollection }
+
+	OLSKCollectionItems={ mod._ValueItems }
 	
 	{ ...inputData }
 

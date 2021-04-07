@@ -29,9 +29,8 @@ const main = {
 
 		const mod = {
 
-			_ValueItemsAll: params.OLSKCollectionItems,
 			ValueItemsAll (inputData) {
-				[].splice.apply(params.OLSKCollectionItems, [0, params.OLSKCollectionItems.length].concat(mod._ValueItemsAll = inputData));
+				params.OLSKCollectionItems.splice(...[0, params.OLSKCollectionItems.length].concat(inputData));
 
 				params.OLSKCollectionDispatchChange && params.OLSKCollectionDispatchChange();
 			},
@@ -49,13 +48,13 @@ const main = {
 			// CONTROL
 
 			OLSKCollectionInsert (inputData) {
-				mod.ValueItemsAll([inputData].concat(mod._ValueItemsAll));
+				mod.ValueItemsAll([inputData].concat(params.OLSKCollectionItems));
 
 				return inputData;
 			},
 
 			OLSKCollectionUpdate (inputData) {
-				mod.ValueItemsAll(mod._ValueItemsAll.map(function (e) {
+				mod.ValueItemsAll(params.OLSKCollectionItems.map(function (e) {
 					return params._OLSKCollectionKeyFunction(e) === params._OLSKCollectionKeyFunction(inputData) ? inputData : e;
 				}));
 
@@ -63,7 +62,7 @@ const main = {
 			},
 			
 			OLSKCollectionRemove (inputData) {
-				mod.ValueItemsAll(mod._ValueItemsAll.filter(function (e) {
+				mod.ValueItemsAll(params.OLSKCollectionItems.filter(function (e) {
 					return params._OLSKCollectionKeyFunction(e) !== params._OLSKCollectionKeyFunction(inputData);
 				}));
 
@@ -71,7 +70,11 @@ const main = {
 			},
 
 			OLSKCollectionSort () {
-				mod.ValueItemsAll(mod._ValueItemsAll.sort(params.OLSKCollectionSortFunction));
+				mod.ValueItemsAll(params.OLSKCollectionItems.sort(params.OLSKCollectionSortFunction));
+			},
+
+			_OLSKCollectionDebugReassign (inputData) {
+				params.OLSKCollectionItems = inputData;
 			},
 		
 		};
