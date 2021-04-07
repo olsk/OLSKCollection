@@ -151,3 +151,9 @@ const mod = {
 {/each}
 
 </div>
+
+<style>
+.OLSKCollectionItem {
+	cursor: pointer;
+}
+</style>
