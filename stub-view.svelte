@@ -44,14 +44,14 @@ const mod = {
 		mod._OLSKCollection.modPublic.OLSKCollectionSort();
 	},
 
-	InterfaceGroupButtonDidClick () {
+	InterfaceChunkButtonDidClick () {
 		mod._OLSKCollection.$$set({
 
 			OLSKCollectionChunkFunction: (function (inputData) {
 				return Object.fromEntries(Object.entries(inputData.reduce(function (coll, item) {
-					const group = item.XYZItemBlurb[0].toUpperCase();
+					const chunk = item.XYZItemBlurb[0].toUpperCase();
 					return Object.assign(coll, {
-						[group]: (coll[group] || []).concat(item),
+						[chunk]: (coll[chunk] || []).concat(item),
 					});
 				}, {})).reverse());
 			}),
@@ -143,7 +143,7 @@ import OLSKCollection from './main.svelte';
 <p>
 	<button id="TestItemInsertButton" on:click={ mod.InterfaceInsertButtonDidClick }>TestItemInsertButton</button>
 	<button id="TestSortButton" on:click={ mod.InterfaceSortButtonDidClick }>TestSortButton</button>
-	<button id="TestGroupButton" on:click={ mod.InterfaceGroupButtonDidClick }>TestGroupButton</button>
+	<button id="TestChunkButton" on:click={ mod.InterfaceChunkButtonDidClick }>TestChunkButton</button>
 </p>
 
 {#if mod._ValueItemSelected }

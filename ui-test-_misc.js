@@ -13,7 +13,7 @@ describe('OLSKCollection_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('#TestGroupButton');
+			return browser.pressButton('#TestChunkButton');
 		});
 		
 		it('classes OLSKStickyHeader', function () {

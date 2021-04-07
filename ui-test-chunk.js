@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('OLSKCollection_Group', function () {
+describe('OLSKCollection_Chunk', function () {
 
 	const item = uRandomElement('alfa', 'bravo');
 
@@ -13,7 +13,7 @@ describe('OLSKCollection_Group', function () {
 	});
 
 	before(function () {
-		return browser.pressButton('#TestGroupButton');
+		return browser.pressButton('#TestChunkButton');
 	});
 
 	before(function () {

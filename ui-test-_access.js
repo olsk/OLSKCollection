@@ -47,7 +47,7 @@ describe('OLSKCollection_Access', function () {
 	context('OLSKCollectionChunkFunction', function test_OLSKCollectionChunkFunction() {
 
 		before(function () {
-			return browser.pressButton('#TestGroupButton');
+			return browser.pressButton('#TestChunkButton');
 		});
 
 		it('shows OLSKCollectionChunkHeading', function () {

@@ -28,8 +28,8 @@ export const modPublic = OLSKCollectionLogic.OLSKCollectionAPI({
 			return;
 		}
 
-		mod._ValueItemsGrouped = OLSKCollectionChunkFunction(mod._ValueItems);
-		mod._ValueItemsGroups = Object.keys(mod._ValueItemsGrouped);
+		mod._ValueItemsChunked = OLSKCollectionChunkFunction(mod._ValueItems);
+		mod._ValueItemsChunks = Object.keys(mod._ValueItemsChunked);
 	}),
 });
 
@@ -42,7 +42,7 @@ const mod = {
 
 <slot></slot>
 
-{#each (mod._ValueItemsGroups || [undefined]) as key }
+{#each (mod._ValueItemsChunks || [undefined]) as key }
 
 <div class="OLSKCollectionChunk">
 	{#if key }
@@ -50,7 +50,7 @@ const mod = {
 	{/if}
 
 	<div class="OLSKCollectionChunkItems">
-		{#each (key ? mod._ValueItemsGrouped[key] : mod._ValueItems) as item }
+		{#each (key ? mod._ValueItemsChunked[key] : mod._ValueItems) as item }
 			<div class="OLSKCollectionItem" aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => OLSKCollectionDispatchClick(item) }>
 				<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
 			</div>
