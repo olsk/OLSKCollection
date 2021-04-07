@@ -3,8 +3,8 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	OLSKCollection: '.OLSKCollection',
 	
-	OLSKCollectionGroup: '.OLSKCollectionGroup',
-	OLSKCollectionGroupHeading: '.OLSKCollectionGroupHeading',
+	OLSKCollectionChunk: '.OLSKCollectionChunk',
+	OLSKCollectionChunkHeading: '.OLSKCollectionChunkHeading',
 	OLSKCollectionItem: '.OLSKCollectionItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -20,12 +20,12 @@ describe('OLSKCollection_Access', function () {
 		browser.assert.elements(OLSKCollection, 1);
 	});
 
-	it('shows OLSKCollectionGroup', function () {
-		browser.assert.elements(OLSKCollectionGroup, 1);
+	it('shows OLSKCollectionChunk', function () {
+		browser.assert.elements(OLSKCollectionChunk, 1);
 	});
 
-	it('hides OLSKCollectionGroupHeading', function () {
-		browser.assert.elements(OLSKCollectionGroupHeading, 0);
+	it('hides OLSKCollectionChunkHeading', function () {
+		browser.assert.elements(OLSKCollectionChunkHeading, 0);
 	});
 
 	it('hides OLSKCollectionItem', function () {
@@ -50,8 +50,8 @@ describe('OLSKCollection_Access', function () {
 			return browser.pressButton('#TestGroupButton');
 		});
 
-		it('shows OLSKCollectionGroupHeading', function () {
-			browser.assert.elements(OLSKCollectionGroupHeading, 1);
+		it('shows OLSKCollectionChunkHeading', function () {
+			browser.assert.elements(OLSKCollectionChunkHeading, 1);
 		});
 
 	});
@@ -66,8 +66,8 @@ describe('OLSKCollection_Access', function () {
 			browser.assert.elements(OLSKCollectionItem, 0);
 		});
 
-		it('hides OLSKCollectionGroup', function () {
-			browser.assert.elements(OLSKCollectionGroup, 0);
+		it('hides OLSKCollectionChunk', function () {
+			browser.assert.elements(OLSKCollectionChunk, 0);
 		});
 
 	});

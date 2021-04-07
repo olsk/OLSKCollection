@@ -20,10 +20,10 @@ describe('OLSKCollection_Group', function () {
 		return browser.fill('#TestItemField', item);
 	});
 
-	context('OLSKCollectionGroupHeading', function () {
+	context('OLSKCollectionChunkHeading', function () {
 		
 		it('binds OLSKCollectionChunkFunction', function () {
-			browser.assert.text(OLSKCollectionGroupHeading, item[0].toUpperCase());
+			browser.assert.text(OLSKCollectionChunkHeading, item[0].toUpperCase());
 		});
 	
 	});

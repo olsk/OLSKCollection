@@ -6,7 +6,7 @@ describe('OLSKCollection_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 	
-	describe('OLSKCollectionGroupHeading', function test_OLSKCollectionGroupHeading () {
+	describe('OLSKCollectionChunkHeading', function test_OLSKCollectionChunkHeading () {
 
 		before(function () {
 			return browser.pressButton('#TestItemInsertButton');
@@ -17,7 +17,7 @@ describe('OLSKCollection_Misc', function () {
 		});
 		
 		it('classes OLSKStickyHeader', function () {
-			browser.assert.hasClass(OLSKCollectionGroupHeading, 'OLSKStickyHeader');
+			browser.assert.hasClass(OLSKCollectionChunkHeading, 'OLSKStickyHeader');
 		});
 
 	});

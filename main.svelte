@@ -44,12 +44,12 @@ const mod = {
 
 {#each (mod._ValueItemsGroups || [undefined]) as key }
 
-<div class="OLSKCollectionGroup">
+<div class="OLSKCollectionChunk">
 	{#if key }
-		<div class="OLSKCollectionGroupHeading OLSKStickyHeader">{ key }</div>
+		<div class="OLSKCollectionChunkHeading OLSKStickyHeader">{ key }</div>
 	{/if}
 
-	<div class="OLSKCollectionGroupItems">
+	<div class="OLSKCollectionChunkItems">
 		{#each (key ? mod._ValueItemsGrouped[key] : mod._ValueItems) as item }
 			<div class="OLSKCollectionItem" aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => OLSKCollectionDispatchClick(item) }>
 				<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
