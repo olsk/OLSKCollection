@@ -29,12 +29,7 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 	OLSKCollectionDispatchChange: (function () {
 		OLSKCollectionItems = OLSKCollectionItems;
 		
-		if (!OLSKCollectionChunkFunction) {
-			return;
-		}
-
-		mod._ValueItemsChunked = OLSKCollectionChunkFunction(OLSKCollectionItems);
-		mod._ValueItemsChunks = Object.keys(mod._ValueItemsChunked);
+		_OLSKCollectionItemsDidChange(OLSKCollectionItems);
 	}),
 }), {
 
@@ -54,6 +49,13 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 
 const _OLSKCollectionItemsDidChange = function (inputData) {
 	modPublic._OLSKCollectionDebugReassign(inputData);
+
+	if (!OLSKCollectionChunkFunction) {
+		return;
+	}
+
+	mod._ValueItemsChunked = OLSKCollectionChunkFunction(OLSKCollectionItems);
+	mod._ValueItemsChunks = Object.keys(mod._ValueItemsChunked);
 };
 
 $: {
