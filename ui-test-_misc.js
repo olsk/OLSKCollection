@@ -2,8 +2,12 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('OLSKCollection_Misc', function () {
 
+	const OLSKCollectionItemClass = Math.random().toString();
+
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			OLSKCollectionItemClass,
+		});
 	});
 	
 	describe('OLSKCollectionChunkHeading', function test_OLSKCollectionChunkHeading () {
@@ -33,6 +37,10 @@ describe('OLSKCollection_Misc', function () {
 
 		it('sets aria-label', function () {
 			browser.assert.attribute(OLSKCollectionItem, 'aria-label', browser.query('.TestOLSKCollectionItem').innerHTML);
+		});
+
+		it('binds OLSKCollectionItemClass', function () {
+			browser.assert.hasClass(OLSKCollectionItem, OLSKCollectionItemClass);
 		});
 
 		it('binds OLSKCollectionItem', function () {

@@ -12,6 +12,7 @@ export let OLSKCollectionDispatchArrow = null;
 
 export let OLSKCollectionItems = [];
 export let OLSKCollectionItemsLocus = null;
+export let OLSKCollectionItemClass = '';
 
 export let OLSKCollectionEnableLooping = false;
 export let OLSKCollectionIgnoreKeyboard = false;
@@ -140,7 +141,7 @@ const mod = {
 
 	<div class="OLSKCollectionChunkItems">
 		{#each (key ? mod._ValueItemsChunked[key] : OLSKCollectionItems) as item }
-			<div class="OLSKCollectionItem" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
+			<div class="OLSKCollectionItem { OLSKCollectionItemClass }" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
 				{#if modPublic._OLSKCollectionStashEnabled }
 					<div class="OLSKCollectionItemStashStatus"></div>
 				{/if}
