@@ -39,11 +39,21 @@ describe('OLSKCollection_Stash', function () {
 			});
 
 			before(function () {
+				browser.assert.text('#TestOLSKCollectionDispatchStash', '0');
+				browser.assert.text('#TestOLSKCollectionDispatchStashData', 'undefined');
+			});
+
+			before(function () {
 				return browser.click(`${ OLSKCollectionItem }:nth-child(${ index })`);
 			});
 
 			it('sends no TestOLSKCollectionDispatchClick', function () {
 				browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
+			});
+
+			it('sends OLSKCollectionDispatchStash', function () {
+				browser.assert.text('#TestOLSKCollectionDispatchStash', '1');
+				browser.assert.text('#TestOLSKCollectionDispatchStashData', '1');
 			});
 
 			it('adds to stash', function () {
@@ -58,6 +68,11 @@ describe('OLSKCollection_Stash', function () {
 
 				it('sends no TestOLSKCollectionDispatchClick', function () {
 					browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
+				});
+
+				it('sends OLSKCollectionDispatchStash', function () {
+					browser.assert.text('#TestOLSKCollectionDispatchStash', '2');
+					browser.assert.text('#TestOLSKCollectionDispatchStashData', '0');
 				});
 
 				it('removes from stash', function () {

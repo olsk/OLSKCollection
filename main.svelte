@@ -9,6 +9,7 @@ export let _OLSKCollectionDispatchKey;
 
 export let OLSKCollectionDispatchClick;
 export let OLSKCollectionDispatchArrow = null;
+export let OLSKCollectionDispatchStash = null;
 
 export let OLSKCollectionItems = [];
 export let OLSKCollectionItemsLocus = null;
@@ -52,6 +53,8 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 		modPublic._OLSKCollectionStashItems = modPublic._OLSKCollectionStashItems.includes(inputData) ? modPublic._OLSKCollectionStashItems.filter(function (e) {
 			return e !== inputData;
 		}) : modPublic._OLSKCollectionStashItems.concat(inputData);
+
+		OLSKCollectionDispatchStash && OLSKCollectionDispatchStash(modPublic._OLSKCollectionStashItems.slice());
 	},
 
 });

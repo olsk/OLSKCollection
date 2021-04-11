@@ -149,6 +149,11 @@ const inputData = Object.assign({
 		window.TestOLSKCollectionDispatchArrowData.innerHTML = inputData.OLSKCollectionItemAccessibilitySummaryFunction(item);
 	},
 
+	OLSKCollectionDispatchStash (inputData) {
+		window.TestOLSKCollectionDispatchStash.innerHTML = parseInt(window.TestOLSKCollectionDispatchStash.innerHTML) + 1;
+		window.TestOLSKCollectionDispatchStashData.innerHTML = inputData.length;
+	},
+
 }, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
 	if (e[0] === 'OLSKCollectionItems') {
 		mod._ValueItems = JSON.parse(e[1]);
