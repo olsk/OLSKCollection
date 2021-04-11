@@ -34,6 +34,8 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 	}),
 }), {
 
+	_OLSKCollectionStashItems: [],
+
 	_OLSKCollectionStashEnabled: false,
 
 	OLSKCollectionStashEnabled (inputData) {
@@ -41,15 +43,15 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 			return modPublic._OLSKCollectionStashEnabled;
 		}
 
-		mod._ValueStashItems = [];
+		modPublic._OLSKCollectionStashItems = [];
 
 		return modPublic._OLSKCollectionStashEnabled = inputData;
 	},
 
 	_OLSKCollectionStashToggle (inputData) {
-		mod._ValueStashItems = mod._ValueStashItems.includes(inputData) ? mod._ValueStashItems.filter(function (e) {
+		modPublic._OLSKCollectionStashItems = modPublic._OLSKCollectionStashItems.includes(inputData) ? modPublic._OLSKCollectionStashItems.filter(function (e) {
 			return e !== inputData;
-		}) : mod._ValueStashItems.concat(inputData);
+		}) : modPublic._OLSKCollectionStashItems.concat(inputData);
 	},
 
 });
@@ -70,10 +72,6 @@ $: {
 };
 
 const mod = {
-
-	// VALUE
-
-	_ValueStashItems: [],
 
 	// INTERFACE
 
@@ -143,7 +141,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	<div class="OLSKCollectionChunkItems">
 		{#each (key ? mod._ValueItemsChunked[key] : OLSKCollectionItems) as item }
-			<div class="OLSKCollectionItem { OLSKCollectionItemClass }" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? modPublic._OLSKCollectionStashToggle(item) : OLSKCollectionDispatchClick(item) }>
+			<div class="OLSKCollectionItem { OLSKCollectionItemClass }" class:OLSKCollectionItemStash={ modPublic._OLSKCollectionStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? modPublic._OLSKCollectionStashToggle(item) : OLSKCollectionDispatchClick(item) }>
 				{#if modPublic._OLSKCollectionStashEnabled }
 					<div class="OLSKCollectionItemStashStatus">
 						<div class="OLSKCollectionItemStashStatusImage">{@html OLSKUIAssets._OLSKSharedStashSelected }</div>
