@@ -46,6 +46,12 @@ export const modPublic = Object.assign(OLSKCollectionLogic.OLSKCollectionAPI({
 		return modPublic._OLSKCollectionStashEnabled = inputData;
 	},
 
+	_OLSKCollectionStashToggle (inputData) {
+		mod._ValueStashItems = mod._ValueStashItems.includes(inputData) ? mod._ValueStashItems.filter(function (e) {
+			return e !== inputData;
+		}) : mod._ValueStashItems.concat(inputData);
+	},
+
 });
 
 const _OLSKCollectionItemsDidChange = function (inputData) {
@@ -112,12 +118,6 @@ const mod = {
 		handlerFunctions[event.code] && handlerFunctions[event.code]();
 	},
 
-	InterfaceStashToggle (inputData) {
-		mod._ValueStashItems = mod._ValueStashItems.includes(inputData) ? mod._ValueStashItems.filter(function (e) {
-			return e !== inputData;
-		}) : mod._ValueStashItems.concat(inputData);
-	},
-
 	// CONTROL
 
 	ControlArrowIncrement (inputData) {
@@ -143,7 +143,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	<div class="OLSKCollectionChunkItems">
 		{#each (key ? mod._ValueItemsChunked[key] : OLSKCollectionItems) as item }
-			<div class="OLSKCollectionItem { OLSKCollectionItemClass }" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
+			<div class="OLSKCollectionItem { OLSKCollectionItemClass }" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? modPublic._OLSKCollectionStashToggle(item) : OLSKCollectionDispatchClick(item) }>
 				{#if modPublic._OLSKCollectionStashEnabled }
 					<div class="OLSKCollectionItemStashStatus">
 						<div class="OLSKCollectionItemStashStatusImage">{@html OLSKUIAssets._OLSKSharedStashSelected }</div>
