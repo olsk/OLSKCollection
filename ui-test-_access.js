@@ -128,7 +128,7 @@ describe('OLSKCollection_Access', function () {
 					return browser.pressButton('#TestStashButton');
 				});
 
-				it('shows OLSKCollectionItemStashStatus', function () {
+				it('hides OLSKCollectionItemStashStatus', function () {
 					browser.assert.elements(OLSKCollectionItemStashStatus, 0);
 				});
 			
