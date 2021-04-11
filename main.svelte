@@ -125,6 +125,8 @@ const mod = {
 	},
 
 };
+
+import OLSKUIAssets from 'OLSKUIAssets';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
@@ -143,7 +145,9 @@ const mod = {
 		{#each (key ? mod._ValueItemsChunked[key] : OLSKCollectionItems) as item }
 			<div class="OLSKCollectionItem { OLSKCollectionItemClass }" class:OLSKCollectionItemStash={ mod._ValueStashItems.includes(item) } class:OLSKCollectionItemLocus={ item === OLSKCollectionItemsLocus } aria-label={ OLSKCollectionItemAccessibilitySummaryFunction(item) } role="button" on:click={ () => modPublic._OLSKCollectionStashEnabled ? mod.InterfaceStashToggle(item) : OLSKCollectionDispatchClick(item) }>
 				{#if modPublic._OLSKCollectionStashEnabled }
-					<div class="OLSKCollectionItemStashStatus"></div>
+					<div class="OLSKCollectionItemStashStatus">
+						<div class="OLSKCollectionItemStashStatusImage">{@html OLSKUIAssets._OLSKSharedStashSelected }</div>
+					</div>
 				{/if}
 				<slot name="OLSKCollectionItem" OLSKCollectionItem={ item }></slot>
 			</div>
@@ -158,5 +162,12 @@ const mod = {
 <style>
 .OLSKCollectionItem {
 	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+}
+
+.OLSKCollectionItemStashStatusImage:not(.OLSKCollectionItemStash .OLSKCollectionItemStashStatusImage) {
+	display: none;
 }
 </style>

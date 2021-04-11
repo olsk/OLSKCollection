@@ -8,6 +8,7 @@ Object.entries({
 
 	OLSKCollectionItem: '.OLSKCollectionItem',
 	OLSKCollectionItemStashStatus: '.OLSKCollectionItemStashStatus',
+	OLSKCollectionItemStashStatusImage: '.OLSKCollectionItemStashStatusImage',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -120,6 +121,10 @@ describe('OLSKCollection_Access', function () {
 
 			it('shows OLSKCollectionItemStashStatus', function () {
 				browser.assert.elements(OLSKCollectionItemStashStatus, count);
+			});
+
+			it('shows OLSKCollectionItemStashStatusImage', function () {
+				browser.assert.elements(OLSKCollectionItemStashStatusImage, count);
 			});
 
 			context('disable', function () {

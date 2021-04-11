@@ -87,4 +87,20 @@ describe('OLSKCollection_Misc', function () {
 
 	});
 
+	context('OLSKCollectionItemStashStatusImage', function test_OLSKCollectionItemStashStatusImage() {
+
+		before(function () {
+			return browser.pressButton('#TestStashButton');
+		});
+
+		before(function () {
+			return browser.click(OLSKCollectionItem);
+		});
+
+		it('sets src', function () {
+			browser.assert.elements(`${ OLSKCollectionItemStashStatusImage } #_OLSKSharedStashSelected`, 1);
+		});
+
+	});
+
 });

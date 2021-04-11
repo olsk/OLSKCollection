@@ -1,4 +1,7 @@
 {
   "name": "OLSKCollection",
-  "main": "main.svelte"
+  "main": "main.svelte",
+  "dependencies": {
+    "OLSKUIAssets": "olsk/OLSKUIAssets"
+  }
 }
