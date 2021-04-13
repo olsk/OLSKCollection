@@ -9,6 +9,18 @@ describe('OLSKCollection_Misc', function () {
 			OLSKCollectionItemClass,
 		});
 	});
+
+	context('OLSKCollectionEmpty', function test_OLSKCollectionEmpty() {
+
+		it('sets aria-hidden', function () {
+			browser.assert.attribute(OLSKCollectionEmpty, 'aria-hidden', 'true');
+		});
+
+		it('binds OLSKCollectionEmpty', function () {
+			browser.assert.element(`${ OLSKCollectionEmpty } .TestOLSKCollectionEmpty`);
+		});
+
+	});
 	
 	describe('OLSKCollectionChunkHeading', function test_OLSKCollectionChunkHeading () {
 

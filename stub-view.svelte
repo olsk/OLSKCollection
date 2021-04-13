@@ -206,7 +206,9 @@ import OLSKCollection from './main.svelte';
 
 	<!-- MASTER -->
 
-	<div slot="OLSKCollectionItem" class="TestOLSKCollectionItem" class:TestOLSKCollectionItemArchived={ OLSKCollectionItem.XYZItemIsArchived } >{ OLSKCollectionItem.XYZItemBlurb }</div>	
+	<div slot="OLSKCollectionItem" class="TestOLSKCollectionItem" class:TestOLSKCollectionItemArchived={ OLSKCollectionItem.XYZItemIsArchived }>{ OLSKCollectionItem.XYZItemBlurb }</div>	
+
+	<div slot="OLSKCollectionEmpty" class="TestOLSKCollectionEmpty">TestOLSKCollectionEmpty</div>
 </OLSKCollection>
 
 {#if mod._ValueItemSelected }

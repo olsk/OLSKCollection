@@ -9,6 +9,8 @@ Object.entries({
 	OLSKCollectionItem: '.OLSKCollectionItem',
 	OLSKCollectionItemStashStatus: '.OLSKCollectionItemStashStatus',
 	OLSKCollectionItemStashStatusImage: '.OLSKCollectionItemStashStatusImage',
+
+	OLSKCollectionEmpty: '.OLSKCollectionEmpty',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -39,6 +41,10 @@ describe('OLSKCollection_Access', function () {
 		browser.assert.elements(OLSKCollectionItem, 0);
 	});
 
+	it('shows OLSKCollectionEmpty', function () {
+		browser.assert.elements(OLSKCollectionEmpty, 1);
+	});
+
 	context('OLSKCollectionInsert', function test_OLSKCollectionInsert() {
 
 		before(function () {
@@ -47,6 +53,10 @@ describe('OLSKCollection_Access', function () {
 
 		it('shows OLSKCollectionItem', function () {
 			browser.assert.elements(OLSKCollectionItem, 1);
+		});
+
+		it('hides OLSKCollectionEmpty', function () {
+			browser.assert.elements(OLSKCollectionEmpty, 0);
 		});
 
 	});
@@ -75,6 +85,10 @@ describe('OLSKCollection_Access', function () {
 
 		it('hides OLSKCollectionChunk', function () {
 			browser.assert.elements(OLSKCollectionChunk, 0);
+		});
+
+		it('shows OLSKCollectionEmpty', function () {
+			browser.assert.elements(OLSKCollectionEmpty, 1);
 		});
 
 	});
@@ -107,6 +121,10 @@ describe('OLSKCollection_Access', function () {
 
 		it('shows OLSKCollectionItem', function () {
 			browser.assert.elements(OLSKCollectionItem, count);
+		});
+
+		it('hides OLSKCollectionEmpty', function () {
+			browser.assert.elements(OLSKCollectionEmpty, 0);
 		});
 
 		it('hides OLSKCollectionItemStashStatus', function () {

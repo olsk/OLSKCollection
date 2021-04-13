@@ -135,6 +135,12 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 <slot></slot>
 
+{#if !OLSKCollectionItems.length }
+	<div class="OLSKCollectionEmpty" aria-hidden="true">
+		<slot name="OLSKCollectionEmpty"></slot>
+	</div>
+{/if}
+
 {#each (mod._ValueItemsChunks || [undefined]) as key }
 
 <div class="OLSKCollectionChunk">
