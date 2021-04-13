@@ -174,6 +174,10 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	align-items: center;
 }
 
+.OLSKCollectionItemStashStatus {
+	flex-shrink: 0;
+}
+
 .OLSKCollectionItemStashStatusImage:not(.OLSKCollectionItemStash .OLSKCollectionItemStashStatusImage) {
 	display: none;
 }
