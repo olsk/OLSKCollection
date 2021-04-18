@@ -4,6 +4,7 @@ export let OLSKCollectionItemAccessibilitySummaryFunction;
 export let OLSKCollectionSortFunction;
 
 export let OLSKCollectionChunkFunction = null;
+export let OLSKCollectionChunkKeySortFunction = null;
 
 export let _OLSKCollectionDispatchKey;
 
@@ -67,7 +68,9 @@ const _OLSKCollectionItemsDidChange = function (inputData) {
 	}
 
 	mod._ValueItemsChunked = OLSKCollectionChunkFunction(OLSKCollectionItems);
-	mod._ValueItemsChunks = Object.keys(mod._ValueItemsChunked);
+	mod._ValueItemsChunks = (function (inputData) {
+		return OLSKCollectionChunkKeySortFunction ? inputData.sort(OLSKCollectionChunkKeySortFunction) : inputData;
+	})(Object.keys(mod._ValueItemsChunked));
 };
 
 $: {
