@@ -67,6 +67,14 @@ const _OLSKCollectionItemsDidChange = function (inputData) {
 		return;
 	}
 
+	const order = JSON.stringify(OLSKCollectionItems.map(_OLSKCollectionDispatchKey));
+
+	if (order === mod._ValueOrder) {
+		return;
+	}
+
+	mod._ValueOrder = order;
+
 	mod._ValueItemsChunked = OLSKCollectionChunkFunction(OLSKCollectionItems);
 	mod._ValueItemsChunks = (function (inputData) {
 		return OLSKCollectionChunkKeySortFunction ? inputData.sort(OLSKCollectionChunkKeySortFunction) : inputData;
@@ -78,6 +86,10 @@ $: {
 };
 
 const mod = {
+
+	// VALUE
+
+	_ValueOrder: '',
 
 	// INTERFACE
 
