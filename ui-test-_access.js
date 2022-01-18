@@ -12,7 +12,7 @@ Object.entries({
 
 	OLSKCollectionEmpty: '.OLSKCollectionEmpty',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('OLSKCollection_Access', function () {
