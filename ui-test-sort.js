@@ -64,8 +64,8 @@ describe('OLSKCollection_Sort', function () {
 			return browser.pressButton('#TestSortButton');
 		});
 
-		it('skips sort', function () {
 			browser.assert.text(OLSKCollectionItem, 'alfa2 charlie');
+		it('sorts', function () {
 		});
 
 	});
