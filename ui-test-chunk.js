@@ -23,7 +23,7 @@ describe('OLSKCollection_Chunk', function () {
 	context('OLSKCollectionChunkHeading', function () {
 		
 		it('binds OLSKCollectionChunkFunction', function () {
-			browser.assert.text(OLSKCollectionChunkHeading, item[0].toUpperCase());
+			return browser.assert.text(OLSKCollectionChunkHeading, item[0].toUpperCase());
 		});
 	
 	});

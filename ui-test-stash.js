@@ -27,7 +27,7 @@ describe('OLSKCollection_Stash', function () {
 		});
 
 		it('selects none', function () {
-			browser.assert.elements('.OLSKCollectionItemStash', 0);
+			return browser.assert.elements('.OLSKCollectionItemStash', 0);
 		});
 
 		context('click if not selected', function () {
@@ -35,7 +35,7 @@ describe('OLSKCollection_Stash', function () {
 			const index = uRandomInt(items.length) + 1;
 
 			before(function () {
-				browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
+				return browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
 			});
 
 			before(function () {
@@ -48,7 +48,7 @@ describe('OLSKCollection_Stash', function () {
 			});
 
 			it('sends no TestOLSKCollectionDispatchClick', function () {
-				browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
+				return browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
 			});
 
 			it('sends OLSKCollectionDispatchStash', function () {
@@ -57,7 +57,7 @@ describe('OLSKCollection_Stash', function () {
 			});
 
 			it('adds to stash', function () {
-				browser.assert.hasClass(`${ OLSKCollectionItem }:nth-child(${ index })`, 'OLSKCollectionItemStash');
+				return browser.assert.hasClass(`${ OLSKCollectionItem }:nth-child(${ index })`, 'OLSKCollectionItemStash');
 			});
 
 			context('click if selected', function () {
@@ -67,7 +67,7 @@ describe('OLSKCollection_Stash', function () {
 				});
 
 				it('sends no TestOLSKCollectionDispatchClick', function () {
-					browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
+					return browser.assert.text('#TestOLSKCollectionDispatchClick', '0');
 				});
 
 				it('sends OLSKCollectionDispatchStash', function () {
@@ -76,7 +76,7 @@ describe('OLSKCollection_Stash', function () {
 				});
 
 				it('removes from stash', function () {
-					browser.assert.hasNoClass(`${ OLSKCollectionItem }:nth-child(${ index })`, 'OLSKCollectionItemStash');
+					return browser.assert.hasNoClass(`${ OLSKCollectionItem }:nth-child(${ index })`, 'OLSKCollectionItemStash');
 				});
 
 			});
@@ -92,7 +92,7 @@ describe('OLSKCollection_Stash', function () {
 		});
 
 		it('selects none', function () {
-			browser.assert.elements('.OLSKCollectionItemStash', 0);
+			return browser.assert.elements('.OLSKCollectionItemStash', 0);
 		});
 	
 	});
@@ -104,11 +104,11 @@ describe('OLSKCollection_Stash', function () {
 		});
 
 		before(function () {
-			return browser.click(OLSKCollectionItem);
+			return browser.click(OLSKCollectionItem + ':first-of-type');
 		});
 
 		before(function () {
-			browser.assert.elements('.OLSKCollectionItemStash', 1);
+			return browser.assert.elements('.OLSKCollectionItemStash', 1);
 		});
 
 		before(function () {
@@ -120,7 +120,7 @@ describe('OLSKCollection_Stash', function () {
 		});
 
 		it('forgets selection', function () {
-			browser.assert.elements('.OLSKCollectionItemStash', 0);
+			return browser.assert.elements('.OLSKCollectionItemStash', 0);
 		});
 	
 	});

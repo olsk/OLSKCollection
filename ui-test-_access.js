@@ -26,23 +26,23 @@ describe('OLSKCollection_Access', function () {
 	});
 
 	it('shows OLSKCollection', function () {
-		browser.assert.elements(OLSKCollection, 1);
+		return browser.assert.elements(OLSKCollection, 1);
 	});
 
 	it('shows OLSKCollectionChunk', function () {
-		browser.assert.elements(OLSKCollectionChunk, 1);
+		return browser.assert.elements(OLSKCollectionChunk, 1);
 	});
 
 	it('hides OLSKCollectionChunkHeading', function () {
-		browser.assert.elements(OLSKCollectionChunkHeading, 0);
+		return browser.assert.elements(OLSKCollectionChunkHeading, 0);
 	});
 
 	it('hides OLSKCollectionItem', function () {
-		browser.assert.elements(OLSKCollectionItem, 0);
+		return browser.assert.elements(OLSKCollectionItem, 0);
 	});
 
 	it('shows OLSKCollectionEmpty', function () {
-		browser.assert.elements(OLSKCollectionEmpty, 1);
+		return browser.assert.elements(OLSKCollectionEmpty, 1);
 	});
 
 	context('OLSKCollectionInsert', function test_OLSKCollectionInsert() {
@@ -52,11 +52,11 @@ describe('OLSKCollection_Access', function () {
 		});
 
 		it('shows OLSKCollectionItem', function () {
-			browser.assert.elements(OLSKCollectionItem, 1);
+			return browser.assert.elements(OLSKCollectionItem, 1);
 		});
 
 		it('hides OLSKCollectionEmpty', function () {
-			browser.assert.elements(OLSKCollectionEmpty, 0);
+			return browser.assert.elements(OLSKCollectionEmpty, 0);
 		});
 
 	});
@@ -68,7 +68,7 @@ describe('OLSKCollection_Access', function () {
 		});
 
 		it('shows OLSKCollectionChunkHeading', function () {
-			browser.assert.elements(OLSKCollectionChunkHeading, 1);
+			return browser.assert.elements(OLSKCollectionChunkHeading, 1);
 		});
 
 	});
@@ -80,15 +80,15 @@ describe('OLSKCollection_Access', function () {
 		});
 
 		it('hides OLSKCollectionItem', function () {
-			browser.assert.elements(OLSKCollectionItem, 0);
+			return browser.assert.elements(OLSKCollectionItem, 0);
 		});
 
 		it('hides OLSKCollectionChunk', function () {
-			browser.assert.elements(OLSKCollectionChunk, 0);
+			return browser.assert.elements(OLSKCollectionChunk, 0);
 		});
 
 		it('shows OLSKCollectionEmpty', function () {
-			browser.assert.elements(OLSKCollectionEmpty, 1);
+			return browser.assert.elements(OLSKCollectionEmpty, 1);
 		});
 
 	});
@@ -100,7 +100,7 @@ describe('OLSKCollection_Access', function () {
 		});
 
 		it('shows OLSKCollectionItem', function () {
-			browser.assert.elements(OLSKCollectionItem, TestAssignmentCount);
+			return browser.assert.elements(OLSKCollectionItem, TestAssignmentCount);
 		});
 
 	});
@@ -120,15 +120,15 @@ describe('OLSKCollection_Access', function () {
 		});
 
 		it('shows OLSKCollectionItem', function () {
-			browser.assert.elements(OLSKCollectionItem, count);
+			return browser.assert.elements(OLSKCollectionItem, count);
 		});
 
 		it('hides OLSKCollectionEmpty', function () {
-			browser.assert.elements(OLSKCollectionEmpty, 0);
+			return browser.assert.elements(OLSKCollectionEmpty, 0);
 		});
 
 		it('hides OLSKCollectionItemStashStatus', function () {
-			browser.assert.elements(OLSKCollectionItemStashStatus, 0);
+			return browser.assert.elements(OLSKCollectionItemStashStatus, 0);
 		});
 
 		context('OLSKCollectionStashEnabled', function () {
@@ -138,11 +138,11 @@ describe('OLSKCollection_Access', function () {
 			});
 
 			it('shows OLSKCollectionItemStashStatus', function () {
-				browser.assert.elements(OLSKCollectionItemStashStatus, count);
+				return browser.assert.elements(OLSKCollectionItemStashStatus, count);
 			});
 
 			it('shows OLSKCollectionItemStashStatusImage', function () {
-				browser.assert.elements(OLSKCollectionItemStashStatusImage, count);
+				return browser.assert.elements(OLSKCollectionItemStashStatusImage, count);
 			});
 
 			context('disable', function () {
@@ -152,7 +152,7 @@ describe('OLSKCollection_Access', function () {
 				});
 
 				it('hides OLSKCollectionItemStashStatus', function () {
-					browser.assert.elements(OLSKCollectionItemStashStatus, 0);
+					return browser.assert.elements(OLSKCollectionItemStashStatus, 0);
 				});
 			
 			});

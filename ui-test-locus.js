@@ -57,7 +57,7 @@ describe('OLSKCollection_Locus', function () {
 				});
 
 				it('sends no OLSKCollectionDispatchArrow', function() {
-					browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
+					return browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
 				});
 			
 			});
@@ -81,7 +81,7 @@ describe('OLSKCollection_Locus', function () {
 				});
 				
 				before(function () {
-					browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
+					return browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
 				});
 
 				before(function () {
@@ -119,7 +119,7 @@ describe('OLSKCollection_Locus', function () {
 				});
 
 				it('sends no OLSKCollectionDispatchArrow', function() {
-					browser.assert.text('#TestOLSKCollectionDispatchArrow', '2');
+					return browser.assert.text('#TestOLSKCollectionDispatchArrow', '2');
 				});
 
 				context('OLSKCollectionEnableLooping', function () {
@@ -168,7 +168,7 @@ describe('OLSKCollection_Locus', function () {
 		['ArrowDown', 'ArrowUp'].forEach(function (e) {
 
 			before(function () {
-				browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
+				return browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
 			});
 
 			before(function () {
@@ -176,7 +176,7 @@ describe('OLSKCollection_Locus', function () {
 			});
 
 			it('sends no OLSKCollectionDispatchArrow', function() {
-				browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
+				return browser.assert.text('#TestOLSKCollectionDispatchArrow', '0');
 			});
 
 		});

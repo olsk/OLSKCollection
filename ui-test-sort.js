@@ -8,7 +8,7 @@ describe('OLSKCollection_Sort', function () {
 
 	describe('insert', function test_insert () {		
 
-		['alfa', 'bravo', 'charlie'].forEach(function (e) {
+		['alfa', 'bravo', 'charlie'].forEach(function (e, i, coll) {
 			
 			before(function () {
 				return browser.pressButton('#TestItemInsertButton');
@@ -18,10 +18,10 @@ describe('OLSKCollection_Sort', function () {
 				return browser.fill('#TestItemField', e);
 			});
 
-		});
+			it('skips sort ' + e, function () {
+				return browser.assert.text(OLSKCollectionItem + `:nth-child(${ coll.length - i })`, e);
+			});
 
-		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'charlie bravo alfa');
 		});
 
 	});
@@ -36,8 +36,12 @@ describe('OLSKCollection_Sort', function () {
 			return browser.fill('#TestItemField', 'alfa2');
 		});
 
-		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'charlie alfa2 alfa');
+		['charlie', 'alfa2', 'alfa'].forEach(function (e, i, coll) {
+			
+			it('skips sort ' + e, function () {
+				return browser.assert.text(OLSKCollectionItem + `:nth-child(${ i + 1 })`, e);
+			});
+
 		});
 
 	});
@@ -52,8 +56,12 @@ describe('OLSKCollection_Sort', function () {
 			return browser.pressButton('#TestItemRemoveButton');
 		});
 
-		it('skips sort', function () {
-			browser.assert.text(OLSKCollectionItem, 'charlie alfa2');
+		['charlie', 'alfa2'].forEach(function (e, i, coll) {
+			
+			it('skips sort ' + e, function () {
+				return browser.assert.text(OLSKCollectionItem + `:nth-child(${ i + 1 })`, e);
+			});
+
 		});
 
 	});
@@ -64,8 +72,12 @@ describe('OLSKCollection_Sort', function () {
 			return browser.pressButton('#TestSortButton');
 		});
 
-			browser.assert.text(OLSKCollectionItem, 'alfa2 charlie');
-		it('sorts', function () {
+		['alfa2', 'charlie'].forEach(function (e, i, coll) {
+			
+			it('skips sort ' + e, function () {
+				return browser.assert.text(OLSKCollectionItem + `:nth-child(${ i + 1 })`, e);
+			});
+
 		});
 
 	});
