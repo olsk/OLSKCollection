@@ -18,7 +18,7 @@ describe('OLSKCollection_Sort', function () {
 				return browser.fill('#TestItemField', e);
 			});
 
-			it('skips sort ' + e, function () {
+			it('sorts ' + e, function () {
 				return browser.assert.text(OLSKCollectionItem + `:nth-child(${ coll.length - i })`, e);
 			});
 
