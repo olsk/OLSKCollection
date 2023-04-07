@@ -13,11 +13,11 @@ describe('OLSKCollection_Chunk', function () {
 	});
 
 	before(function () {
-		return browser.pressButton('#TestChunkButton');
+		return browser.fill('#TestItemField', item);
 	});
 
 	before(function () {
-		return browser.fill('#TestItemField', item);
+		return browser.pressButton('#TestChunkButton');
 	});
 
 	context('OLSKCollectionChunkHeading', function () {
